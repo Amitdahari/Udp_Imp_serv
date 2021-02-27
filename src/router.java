@@ -38,9 +38,9 @@ public class router implements Runnable {
     //calculate the "new" size of packet and change it and add it to the queue flow by user id
     public void input_packet(packet p){
         switch (p.getClient()){
-            case 1: p.setSize(p.getSize()/Common.getWieght_queue1());
+            case 1:
             if(Common.getLast_vr_finish()!=0) {
-                p.setFinish_time(Math.max(Common.getLast_vr_finish(), Common.getTicker()) + p.getSize());
+                p.setFinish_time(Math.max(Common.getLast_vr_finish()+p.getSize()/Common.getWieght_queue1(), Common.getTicker()) +p.getSize()/Common.getWieght_queue1());
             }
             else{
                 p.setFinish_time(p.getSize());
@@ -48,9 +48,9 @@ public class router implements Runnable {
                 Common.getQue1().add(p);
                 break;
 
-            case 2: p.setSize(p.getSize()/Common.getWieght_queue2());
+            case 2:
                 if(Common.getLast_vr_finish()!=0) {
-                    p.setFinish_time(Math.max(Common.getLast_vr_finish(), Common.getTicker()) + p.getSize());
+                    p.setFinish_time(Math.max(Common.getLast_vr_finish()+p.getSize()/Common.getWieght_queue2(), Common.getTicker()) +p.getSize()/Common.getWieght_queue2());
                     Common.getQue2().add(p);
                 }
                 else{
@@ -58,9 +58,9 @@ public class router implements Runnable {
                 }
                 break;
 
-            case 3: p.setSize(p.getSize()/Common.getWieght_queue3());
+            case 3:
                 if(Common.getLast_vr_finish()!=0) {
-                    p.setFinish_time(Math.max(Common.getLast_vr_finish(), Common.getTicker()) + p.getSize());
+                    p.setFinish_time(Math.max(Common.getLast_vr_finish()+p.getSize()/Common.getWieght_queue3(), Common.getTicker()) +p.getSize()/Common.getWieght_queue3());
                 }
                 else{
                     p.setFinish_time(p.getSize());
@@ -68,9 +68,9 @@ public class router implements Runnable {
                 Common.getQue3().add(p);
                 break;
 
-            case 4: p.setSize(p.getSize()/Common.getWieght_queue4());
+            case 4:
                 if(Common.getLast_vr_finish()!=0) {
-                    p.setFinish_time(Math.max(Common.getLast_vr_finish(), Common.getTicker()) + p.getSize());
+                    p.setFinish_time(Math.max(Common.getLast_vr_finish()+p.getSize()/Common.getWieght_queue1(), Common.getTicker()) +p.getSize()/Common.getWieght_queue1());
                 }
                 else {
                     p.setFinish_time(p.getSize());

@@ -118,10 +118,10 @@ public class run_wfq implements Runnable{
                 "current ticker: "+Common.getTicker()+"\n");
         int count_flows=0;
         for (int i=0;i<p.getSize();i++){
-            if(Common.getQue1().size()>0)count_flows+=1;
-            if(Common.getQue2().size()>0)count_flows+=1;
-            if(Common.getQue3().size()>0)count_flows+=1;
-            if(Common.getQue4().size()>0)count_flows+=1;
+            if(Common.getQue1().size()>0 || Common.getHead_queue().get(0).getClient()==1)count_flows+=1;
+            if(Common.getQue2().size()>0 || Common.getHead_queue().get(0).getClient()==2)count_flows+=1;
+            if(Common.getQue3().size()>0 || Common.getHead_queue().get(0).getClient()==3)count_flows+=1;
+            if(Common.getQue4().size()>0 || Common.getHead_queue().get(0).getClient()==4)count_flows+=1;
             if(count_flows>0) {
                 Common.setTicker(Common.getTicker() + 1 / count_flows);
             }

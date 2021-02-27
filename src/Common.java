@@ -2,32 +2,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Common {
-    private static float ticker=0;
+    private static float ticker=1;
     private static float last_vr_finish=0;
     private static List<packet> que1=new ArrayList<>();
     private static List<packet> que2=new ArrayList<>();
     private static List<packet> que3=new ArrayList<>();
     private static List<packet> que4=new ArrayList<>();
     private static List<packet> head_queue=new ArrayList<>();
-    private static final int wieght_queue1=1;
-    private static final int wieght_queue2=3;
-    private static final int wieght_queue3=2;
-    private static final int wieght_queue4=5;
+    private static final float wieght_queue1=1;
+    private static final float wieght_queue2=3;
+    private static final float wieght_queue3=2;
+    private static final float wieght_queue4=5;
 
 
-    public static int getWieght_queue1() {
+    public static float getWieght_queue1() {
         return wieght_queue1;
     }
 
-    public static int getWieght_queue2() {
+    public static float getWieght_queue2() {
         return wieght_queue2;
     }
 
-    public static int getWieght_queue3() {
+    public static float getWieght_queue3() {
         return wieght_queue3;
     }
 
-    public static int getWieght_queue4() {
+    public static float getWieght_queue4() {
         return wieght_queue4;
     }
 
