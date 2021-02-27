@@ -2,7 +2,7 @@ public class packet {
     private int size;
     private int client;
     private String packet_name;
-    private float finish_time;
+    private double finish_time;
 
     public packet(int client, String packet_name, int size) {
         this.size = size;
@@ -11,7 +11,7 @@ public class packet {
         finish_time=0;
     }
 
-    public float getFinish_time() {
+    public double getFinish_time() {
         return finish_time;
     }
 
@@ -20,7 +20,7 @@ public class packet {
         return packet_name;
     }
 
-    public void setFinish_time(float finish_time) {
+    public void setFinish_time(double finish_time) {
         this.finish_time = finish_time;
     }
 
@@ -33,8 +33,5 @@ public class packet {
     }
 
 
-    public void setSize(int size) {
-        this.size = size;
-    }
 
 }

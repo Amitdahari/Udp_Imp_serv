@@ -9,13 +9,13 @@ public class run_wfq implements Runnable{
 
     //calculate who is the next packet to send
     public void next_packet(){
-        float min_result1=0;
-        float min_result2=0;
-        float min_result_final=0;
-        float p1_size=0;
-        float p2_size=0;
-        float p3_size=0;
-        float p4_size=0;
+        double min_result1=0;
+        double min_result2=0;
+        double min_result_final=0;
+        double p1_size=0;
+        double p2_size=0;
+        double p3_size=0;
+        double p4_size=0;
         boolean find=false;
 
         while (!find){
@@ -102,10 +102,7 @@ public class run_wfq implements Runnable{
                 }
             }
         }
-        p1_size=0;
-        p2_size=0;
-        p3_size=0;
-        p4_size=0;
+
         if (Common.getHead_queue().size() > 0) {
             run_packet(Common.getHead_queue().get(0));
         }
@@ -122,9 +119,11 @@ public class run_wfq implements Runnable{
             if(Common.getQue2().size()>0 || Common.getHead_queue().get(0).getClient()==2)count_flows+=1;
             if(Common.getQue3().size()>0 || Common.getHead_queue().get(0).getClient()==3)count_flows+=1;
             if(Common.getQue4().size()>0 || Common.getHead_queue().get(0).getClient()==4)count_flows+=1;
-            if(count_flows>0) {
+            //if(count_flows>0) {
+                System.out.println("TIME WE LOOKING FOR: "+(Common.getTicker() + 1 / count_flows)+"\n");
                 Common.setTicker(Common.getTicker() + 1 / count_flows);
-            }
+
+           // }
             count_flows=0;
             try {
                 sleep(10);
@@ -132,11 +131,12 @@ public class run_wfq implements Runnable{
                 e.printStackTrace();
             }
         }
-        System.out.println("\n"+"finish with client: "+p.getClient()+"\n"+
+        System.out.println("\n"+"***** finish with client: "+p.getClient()+" ***********\n"+
                 "packet number: "+p.getPacket_name()+"\n"+
                 "now ticker is: "+Common.getTicker()+"\n");
         Common.getHead_queue().remove(0);
 
+        System.out.println("**************** "+Common.getLast_vr_finish());
         next_packet();
     }
 }

@@ -70,7 +70,7 @@ public class router implements Runnable {
 
             case 4:
                 if(Common.getLast_vr_finish()!=0) {
-                    p.setFinish_time(Math.max(Common.getLast_vr_finish()+p.getSize()/Common.getWieght_queue1(), Common.getTicker()) +p.getSize()/Common.getWieght_queue1());
+                    p.setFinish_time(Math.max(Common.getLast_vr_finish()+p.getSize()/Common.getWieght_queue4(), Common.getTicker()) +p.getSize()/Common.getWieght_queue4());
                 }
                 else {
                     p.setFinish_time(p.getSize());
