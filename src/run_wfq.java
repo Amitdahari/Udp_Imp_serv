@@ -1,7 +1,9 @@
+import java.text.DecimalFormat;
+
 import static java.lang.Thread.sleep;
 
 public class run_wfq implements Runnable{
-
+    private static DecimalFormat df2 = new DecimalFormat("#.##");
     @Override
     public void run() {
         next_packet();
@@ -110,18 +112,19 @@ public class run_wfq implements Runnable{
 
     //run packet and update clock (each i step is byte send)
     public void run_packet(packet p){
+        double one=1;
+
         System.out.println("now send packet from client: "+p.getClient()+"\n"+
                 "packet number: "+p.getPacket_name()+"\n"+
-                "current ticker: "+Common.getTicker()+"\n");
-        int count_flows=0;
+                "current ticker: "+df2.format(Common.getTicker())+"\n");
+        double count_flows=0;
         for (int i=0;i<p.getSize();i++){
             if(Common.getQue1().size()>0 || Common.getHead_queue().get(0).getClient()==1)count_flows+=1;
             if(Common.getQue2().size()>0 || Common.getHead_queue().get(0).getClient()==2)count_flows+=1;
             if(Common.getQue3().size()>0 || Common.getHead_queue().get(0).getClient()==3)count_flows+=1;
             if(Common.getQue4().size()>0 || Common.getHead_queue().get(0).getClient()==4)count_flows+=1;
             //if(count_flows>0) {
-                System.out.println("TIME WE LOOKING FOR: "+(Common.getTicker() + 1 / count_flows)+"\n");
-                Common.setTicker(Common.getTicker() + 1 / count_flows);
+                Common.setTicker(Common.getTicker() + one/count_flows);
 
            // }
             count_flows=0;
@@ -131,12 +134,11 @@ public class run_wfq implements Runnable{
                 e.printStackTrace();
             }
         }
-        System.out.println("\n"+"***** finish with client: "+p.getClient()+" ***********\n"+
+        System.out.println("\n"+"finish with client: "+p.getClient()+"\n"+
                 "packet number: "+p.getPacket_name()+"\n"+
-                "now ticker is: "+Common.getTicker()+"\n");
+                "now ticker is: "+df2.format(Common.getTicker())+"\n");
         Common.getHead_queue().remove(0);
 
-        System.out.println("**************** "+Common.getLast_vr_finish());
         next_packet();
     }
 }

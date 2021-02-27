@@ -2,11 +2,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class router implements Runnable {
 
+    private static DecimalFormat df2 = new DecimalFormat("#.##");
 
 
     @Override
@@ -16,12 +18,14 @@ public class router implements Runnable {
 
     //start the router
     private void start_listen() {
+
         try {
             ServerSocket serverSocket=new ServerSocket(8888);
             Socket socket;
 
             while (true){
                 socket=serverSocket.accept();
+                System.out.println("Server activated");
                 BufferedReader reader=new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 String res=reader.readLine();
                 String split_res[]=res.split(":");
@@ -80,6 +84,6 @@ public class router implements Runnable {
         }
         System.out.println("got new packet from client: "+p.getClient()+"\n"+
                 "packet number: "+p.getPacket_name()+"\n"+
-                "packet finish time: "+p.getFinish_time()+"\n");
+                "packet finish time: "+df2.format(p.getFinish_time())+"\n");
     }
 }
